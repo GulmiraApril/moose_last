@@ -5,11 +5,22 @@ from django.http import HttpResponse
 
 
 def home_view(request):
-    posts = Post.objects.all()
-    p = {
-        'posts': posts
-    }
-    return render(request, "index.html", p)
+    data = request.GET
+    lang = data.get("lang")
+
+    if lang is None:
+        lang = "en"
+
+    if lang == "en":
+        return render(request, "en/index.html")
+
+    elif lang == "ru":
+        return render(request, "ru/index.html")
+
+    # posts = Post.objects.all()
+    # p = {
+    #     'posts': posts
+    # }
 
 
 def about_view(request):
