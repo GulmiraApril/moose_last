@@ -17,10 +17,10 @@ def home_view(request):
     elif lang == "ru":
         return render(request, "ru/index.html")
 
-    # posts = Post.objects.all()
-    # p = {
-    #     'posts': posts
-    # }
+    posts = Post.objects.all()
+    p = {
+        'posts': posts
+    }
 
 
 def about_view(request):
