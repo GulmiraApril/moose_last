@@ -122,7 +122,7 @@ USE_TZ = True
 gettext_ = lambda x: x
 LANGUAGES = (
     ('en', gettext_('English')),
-    ('ru', gettext_('Russian'))
+    ('ru', gettext_('Russian')),
 )
 MODELTRANSLATION_DEFAULT_LANGUAGE = 'en'
 MODELTRANSLATION_LANGUAGES = ('en', 'ru')
