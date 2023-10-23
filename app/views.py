@@ -8,19 +8,20 @@ def home_view(request):
     data = request.GET
     lang = data.get("lang")
 
-    if lang is None:
-        lang = "en"
-
-    if lang == "en":
-        return render(request, "en/index.html")
-
-    elif lang == "ru":
-        return render(request, "ru/index.html")
+    # if lang is None:
+    #     lang = "en"
+    #
+    # if lang == "en":
+    #     return render(request, "en/index.html")
+    #
+    # elif lang == "ru":
+    #     return render(request, "ru/index.html")
 
     posts = Post.objects.all()
     p = {
         'posts': posts
     }
+    return render(request, 'index.html')
 
 
 def about_view(request):
@@ -34,22 +35,42 @@ def contact_view(request):
                                      message=data['message'])
 
         obj.save()
-        url = f"https://api.telegram.org/bot6560757196:AAGILjAVAkw5C4-2eNV-Wm7abs4KbCbd090/sendMessage?chat_id=748076346&text=you have a notification from readit website:{data['message']}"
+        url = f"https://api.telegram.org/bot6560757196:AAGILjAVAkw5C4-2eNV-Wm7abs4KbCbd090/sendMessage?chat_id=748076346&text=you have a notification from moose website:{data['message']}"
         result = requests.get(url)
 
     return render(request, "contact.html")
 
 
+# def blog_view(request):
+#     data = request.GET
+#     cat_id = data.get("cat_id")
+#     cat_obj = Category.objects.get(id=cat_id)
+#     posts = Post.objects.filter(category=cat_obj)
+#
+#     d = {
+#         'posts': posts
+#     }
+#     return render(request=request, template_name="blog.html", context=d)
+
 def blog_view(request):
     data = request.GET
     cat_id = data.get("cat_id")
-    cat_obj = Category.objects.get(id=cat_id)
-    posts = Post.objects.filter(category=cat_obj)
 
-    d = {
-        'posts': posts
-    }
-    return render(request=request, template_name="blog.html", context=d)
+    if cat_id is not None:
+        try:
+            cat_obj = Category.objects.get(id=cat_id)
+            posts = Post.objects.filter(category=cat_obj)
+
+            d = {
+                'posts': posts,
+                'data': cat_id
+            }
+            return render(request, "blog.html", d)
+        except Category.DoesNotExist:
+            return render(request, "blog.html",)
+    else:
+
+        return render(request, "blog.html",)
 
 
 def blog_single_view(request, pk):

@@ -24,11 +24,10 @@
                         <div class="col-md-4">
                             <div class="author">
                                 <div class="img"
-                                     style="background-image: url({% static 'images/person_1.jpg' %});"></div>
+                                     style="background-image: url{{ post.image.url }};"></div>
                                 <div class="text">
-                                    <h3>Giller Moose</h3>
-                                    <p>A small river named Duden flows by their place and supplies it with the necessary
-                                        regelialia.</p>
+                                    <h3>{{ author.name }}</h3>
+                                    <p>{{ author.bio }}</p>
                                     <ul class="ftco-footer-social list-unstyled mt-2">
                                         <li class="ftco-animate"><a href="#"><span class="fa fa-twitter"></span></a>
                                         </li>

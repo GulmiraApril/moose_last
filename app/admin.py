@@ -13,15 +13,15 @@ class PostInlineAdmin(admin.TabularInline):
     extra = 1
 
 
-# class AuthorInlineAdmin(admin.TabularInline):
-#     model = Author
-#     extra = 1
+class AuthorInlineAdmin(admin.TabularInline):
+    model = Author
+    extra = 1
 
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('name', 'id')
     list_filter = ('name',)
-    inlines = [PostInlineAdmin, ]
+    # inlines = [PostInlineAdmin, ]
 
 
 admin.site.register(Category, CategoryAdmin)
@@ -31,7 +31,7 @@ class AuthorAdmin(admin.ModelAdmin):
     list_display = ('name', 'id', 'author_image', 'preview')
     list_filter = ('name',)
 
-    inlines = [PostInlineAdmin, ]
+    # inlines = [AuthorInlineAdmin, ]
 
     # """ admin panel uchun rasm chiqarish preview """
 
