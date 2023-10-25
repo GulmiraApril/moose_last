@@ -53,35 +53,42 @@ def contact_view(request):
 #     return render(request=request, template_name="blog.html", context=d)
 
 def blog_view(request):
-    data = request.GET
-    cat_id = data.get("cat_id")
+    # data = request.GET
+    # cat_id = data.get("cat_id")
 
-    if cat_id is not None:
-        try:
-            cat_obj = Category.objects.get(id=cat_id)
-            posts = Post.objects.filter(category=cat_obj)
+    # if cat_id is not None:
+    #     cat_obj = Category.objects.get(id=cat_id)
+    #     posts = Post.objects.filter(category=cat_obj)
+    #
+    #     d = {
+    #         'posts': posts,
+    #         'data': cat_id
+    #     }
+    #     return render(request, "blog.html", d)
+    # else:
+    #     categories = Category.objects.all()
+    #     posts = Post.objects.all()
+    #     d = {
+    #         'posts': posts
+    #     }
+    #
 
-            d = {
-                'posts': posts,
-                'data': cat_id
-            }
-            return render(request, "blog.html", d)
-        except Category.DoesNotExist:
-            return render(request, "blog.html",)
-    else:
-
-        return render(request, "blog.html",)
+    posts = Post.objects.all()
+    d = {
+        'posts': posts
+    }
+    return render(request, "blog.html", d)
 
 
 def blog_single_view(request, pk):
     post = Post.objects.get(id=pk)
     comments = Comment.objects.filter(post=post)
-    categories = Category.objects.all()
+    # categories = Category.objects.all()
 
     d = {
         'post': post,
         'comments': comments,
-        "categories": categories
+        # "categories": categories
     }
 
     if request.method == "POST":
