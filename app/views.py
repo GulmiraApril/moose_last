@@ -21,7 +21,7 @@ def home_view(request):
     p = {
         'posts': posts
     }
-    return render(request, 'index.html')
+    return render(request, 'index.html', p)
 
 
 def about_view(request):
