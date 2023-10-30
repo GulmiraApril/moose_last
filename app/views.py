@@ -99,6 +99,6 @@ def blog_single_view(request, pk):
                                      message=data['message'], post=post)
         obj.save()
 
-        return render(request=request, template_name="blog-single.html", context=d)
+        return redirect(f'/blog/{pk}')
 
     return render(request=request, template_name="blog-single.html", context=d)
