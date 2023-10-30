@@ -6,10 +6,10 @@ class Contact(models.Model):
     email = models.EmailField(null=True, blank=True)
     subject = models.CharField(max_length=250, null=True, blank=True)
     message = models.TextField(null=True, blank=True)
-    is_solved = models.BooleanField(null=True, blank=True)
+    is_solved = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.name
+        return f'name: {self.name}'
 
 
 class Category(models.Model):
@@ -17,7 +17,7 @@ class Category(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.name
+        return f'name: {self.name}'
 
 
 class Author(models.Model):
@@ -26,7 +26,7 @@ class Author(models.Model):
     author_bio = models.CharField(max_length=200)
 
     def __str__(self):
-        return self.name
+        return f'name: {self.name}'
 
 
 class Post(models.Model):
@@ -38,7 +38,7 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.title
+        return f'name: {self.title}'
 
 
 class Comment(models.Model):
@@ -51,4 +51,4 @@ class Comment(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.name
+        return f'name: {self.name}'
